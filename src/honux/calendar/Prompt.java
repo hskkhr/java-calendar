@@ -10,12 +10,17 @@ public class Prompt {
 		Calendar cd = new Calendar();
 		
 		Scanner sc = new Scanner(System.in);
-		int month = 0;
+		int year = -1;
+		int month =-1;
 		
 		while(true) {
-			System.out.println("월을 입력하세요.");
+			System.out.println("년도와 월을 입력하세요. (예) 2018년 2월 >> 2018 2");
 			System.out.print(PROMPT); // 프롬프트 출력
-			month = sc.nextInt(); // 월 입력받기
+			String inputValue = sc.nextLine();
+			String[] splitedValue = inputValue.split(" ");
+			year = Integer.parseInt(splitedValue[0]);
+			month = Integer.parseInt(splitedValue[1]);
+			
 			
 			// month가 -1일때 프로그램 종료
 			if((month < 1) || (month > 12)) {
@@ -30,7 +35,7 @@ public class Prompt {
 			}
 			// 정상 값 출력
 			else {
-				cd.printSampleCalendar(month);
+				cd.printSampleCalendar(cd.isLeapYear(year),month);
 			}
 		}
 		

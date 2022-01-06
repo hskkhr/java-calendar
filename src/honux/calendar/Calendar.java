@@ -4,14 +4,27 @@ package honux.calendar;
 public class Calendar {
 	// 상수 배열
 	private static final int[] MAX_DAYS = {31,28,31,30,31,30,31,31,30,31,30,31};
+	private static final int[] LEAP_MAX_DAYS = {31,29,31,30,31,30,31,31,30,31,30,31}; //윤년용
 	
-	//입력값에 해당하는 달의 최대일수 출력하는 함수
-	public int getMaxDaysOfMonth(int month) {
-		return MAX_DAYS[month-1];
+	public boolean isLeapYear(int year) {
+		if(year%4==0 && (year%100!=0 || year%400==0)) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
-	
-	public void printSampleCalendar(int month) {
-		int maxDays = MAX_DAYS[month-1];
+
+	public void printSampleCalendar(boolean result, int month) {
+		int maxDays = 0; //초기화
+		//평년
+		if(result) {
+			maxDays =  LEAP_MAX_DAYS[month-1];
+		}
+		//윤년
+		else {
+			maxDays =  MAX_DAYS[month-1];
+		}
 		
 		System.out.printf("\t <<%d월>> \t\n",month);
 		
