@@ -11,13 +11,27 @@ public class Calendar {
 	}
 	
 	public void printSampleCalendar(int month) {
+		int maxDays = MAX_DAYS[month-1];
+		
 		System.out.printf("\t <<%d월>> \t\n",month);
-		System.out.println("SUN MON TUE WED THU FRI SAT");
-		System.out.println("---------------------------");
-		System.out.println(" 1   2   3   4   5   6   7");
-		System.out.println(" 8   9  10  11  12  13  14");
-		System.out.println("15  16  17  18  19  20  21");
-		System.out.println("22  23  24  25  26  27  28");
+		
+		System.out.println(" SUN MON TUE WED THU FRI SAT");
+		for(int i=0;i<maxDays;i++) {
+			System.out.printf("%4d", (i+1));
+			if((i+1) % 7 == 0) {
+				System.out.println();
+			}
+		}
+		
+		System.out.println();
+		
+		
+//		System.out.println("  SUN MON TUE WED THU FRI SAT");
+//		System.out.println("---------------------------");
+//		System.out.println("   1   2   3   4   5   6   7");
+//		System.out.println("   8   9  10  11  12  13  14");
+//		System.out.println("  15  16  17  18  19  20  21");
+//		System.out.println("22  23  24  25  26  27  28");
 	}
 
 }
