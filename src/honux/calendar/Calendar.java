@@ -12,24 +12,28 @@ public class Calendar {
 	}
 
 	public static void main(String[] args) {
-		//반복횟수 입력받기
-		System.out.println("반복횟수를 입력하세요.");
-		Scanner sc = new Scanner(System.in);
-		int num = sc.nextInt();
-		int[] month = new int[num];
-		
-		//반복횟수만큼 월 입력받기
-		System.out.println("월을 입력하세요.");
-		for(int i=0;i<num;i++) {
-			month[i] = sc.nextInt();
-		}
 		
 		//클래스 생성자
 		Calendar cd = new Calendar();
 		
-		//결과 출력
-		for(int i=0;i<num;i++) {
-			System.out.printf("%d월은 %d일까지 있습니다.\n", month[i], cd.getMaxDaysOfMonth(month[i]));
+		Scanner sc = new Scanner(System.in);
+		int month = 0;
+		
+		while(true) {
+			// 월 입력받기
+			System.out.println("월을 입력하세요.");
+			System.out.print(">");
+			month = sc.nextInt();
+			
+			// month가 -1일때 프로그램 종료
+			if((month < 1) || (month > 12)) {
+				System.out.println("Have a nice day!");
+				break; // 프로그램 종료
+			}
+			// 정상 값 출력
+			else {
+				System.out.printf("%d월은 %d일까지 있습니다.\n\n",month,cd.getMaxDaysOfMonth(month));
+			}
 		}
 		sc.close();
 	}
