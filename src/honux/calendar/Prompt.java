@@ -3,8 +3,6 @@ package honux.calendar;
 import java.util.Scanner;
 
 public class Prompt {
-	private static final String PROMPT = ">";
-	
 	public void runProgram() {
 		//클래스 생성자
 		Calendar cd = new Calendar();
@@ -12,15 +10,20 @@ public class Prompt {
 		Scanner sc = new Scanner(System.in);
 		int year = -1;
 		int month =-1;
+		String wk = "";
 		
 		while(true) {
-			System.out.println("년도와 월을 입력하세요. (예) 2018년 2월 >> 2018 2");
-			System.out.print(PROMPT); // 프롬프트 출력
-			String inputValue = sc.nextLine();
-			String[] splitedValue = inputValue.split(" ");
-			year = Integer.parseInt(splitedValue[0]);
-			month = Integer.parseInt(splitedValue[1]);
+			System.out.println("년도를 입력하세요. (exit: -1)");
+			System.out.print("YEAR>");
+			year = sc.nextInt();
 			
+			if(year==-1) {
+				break;
+			}
+			
+			System.out.println("달을 입력하세요.");
+			System.out.print("MONTH>");
+			month = sc.nextInt();
 			
 			// month가 -1일때 프로그램 종료
 			if((month < 1) || (month > 12)) {
@@ -33,10 +36,16 @@ public class Prompt {
 					continue;
 				}
 			}
+			
+			
+			System.out.println("첫번째 요일을 입력하세요. (SUN, MON, TUE, WED, THU, FRI, SAT)");
+			System.out.print("WEEKDAY>");
+			wk = sc.next();
+			
+			
 			// 정상 값 출력
-			else {
-				cd.printSampleCalendar(cd.isLeapYear(year),month);
-			}
+			cd.printCalendar(cd.isLeapYear(year),year,month, cd.weekdayStringToInt(wk));
+			
 		}
 		
 		System.out.println("Bye~");
